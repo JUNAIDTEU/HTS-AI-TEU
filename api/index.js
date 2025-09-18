@@ -1,12 +1,9 @@
-// Example API router for Render fullstack deployment
-const express = require('express');
-const router = express.Router();
+// api.js
+import { Router } from "express";
+const router = Router();
 
-// Example endpoint
-router.get('/ping', (req, res) => {
-  res.json({ message: 'pong' });
+router.get("/ping", (req, res) => {
+  res.json({ message: "pong" });
 });
 
-// Add your backend endpoints here
-
-module.exports = router;
+export default router;
