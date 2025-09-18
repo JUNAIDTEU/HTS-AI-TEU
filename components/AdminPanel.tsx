@@ -32,6 +32,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
   onSave,
   onClose,
   onClearHistory,
+  onEraseAllMemory,
 }) => {
   const [currentSettings, setCurrentSettings] = useState<AdminSettings>(settings);
   const [newExpiredCode, setNewExpiredCode] = useState("");
@@ -124,8 +125,8 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50 p-2 sm:p-6">
-      <div className="w-full max-w-2xl min-w-[320px] max-h-[95vh] h-auto bg-white dark:bg-gray-800 shadow-2xl flex flex-col rounded-2xl border border-blue-100 dark:border-gray-700 overflow-hidden animate-fadeIn">
+    <div className="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50">
+      <div className="w-full h-screen flex flex-col bg-white dark:bg-gray-800 shadow-2xl border border-blue-100 dark:border-gray-700 overflow-hidden animate-fadeIn">
         <header className="p-4 bg-blue-50 dark:bg-blue-900 border-b border-blue-100 dark:border-blue-800 flex justify-between items-center rounded-t-2xl">
           <div>
             <h2 className="text-xl font-bold text-blue-800 dark:text-blue-100">Admin Controls</h2>
@@ -357,6 +358,38 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
                   </div>
                 </div>
               </div>
+              {/* Theme Preference */}
+              <div className="bg-white dark:bg-gray-800 p-4 rounded-lg shadow border border-gray-200 dark:border-gray-700 mt-4">
+                <h3 className="text-lg font-medium text-blue-800 dark:text-blue-300 mb-3">Appearance</h3>
+                <div className="space-y-2">
+                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Default Theme</label>
+                  <div className="flex items-center gap-3">
+                    <label className={`px-3 py-2 rounded-lg border ${currentSettings.defaultTheme === 'light' ? 'bg-white dark:bg-gray-800 border-blue-500 text-blue-700' : 'bg-gray-50 dark:bg-gray-900 border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300'}`}>
+                      <input
+                        type="radio"
+                        name="defaultTheme"
+                        value="light"
+                        checked={currentSettings.defaultTheme === 'light'}
+                        onChange={() => setCurrentSettings(prev => ({ ...prev, defaultTheme: 'light' }))}
+                        className="mr-2"
+                      />
+                      Light
+                    </label>
+                    <label className={`px-3 py-2 rounded-lg border ${currentSettings.defaultTheme === 'dark' ? 'bg-white dark:bg-gray-800 border-blue-500 text-blue-700' : 'bg-gray-50 dark:bg-gray-900 border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300'}`}>
+                      <input
+                        type="radio"
+                        name="defaultTheme"
+                        value="dark"
+                        checked={currentSettings.defaultTheme === 'dark'}
+                        onChange={() => setCurrentSettings(prev => ({ ...prev, defaultTheme: 'dark' }))}
+                        className="mr-2"
+                      />
+                      Dark
+                    </label>
+                  </div>
+                  <p className="text-xs text-gray-500">Choose the preferred default theme for new sessions or users.</p>
+                </div>
+              </div>
             </div>
           )}
 
@@ -572,7 +605,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
             </div>
           )}
         </div>
-        <footer className="p-4 border-t border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 flex flex-col sm:flex-row justify-between items-center gap-2 rounded-b-2xl">
+  <footer className="p-2 border-t border-Orange-200 dark:border-Orange-700 bg-transparent dark:bg-gray-800 flex flex-col sm:flex-row justify-between items-center gap-2 rounded-b-2xl">
           <button
             onClick={handleReset}
             className="text-sm text-blue-600 hover:text-blue-700 hover:underline transition-colors"
@@ -600,6 +633,12 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({
             </button>
           </div>
         </footer>
+        {/* Watermark */}
+        <div className="absolute left-4 bottom-20 text-[15px] select-none transform rotate-[-0deg] opacity-80 hover:opacity-100 transition-all duration-300">
+          <div className="px-3 py-1.5 rounded-md backdrop-blur-sm bg-gradient-to-r from-blue-500/10 to-purple-500/10 border border-blue-200/20 dark:border-blue-500/20 shadow-lg">
+            <span className="bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400 bg-clip-text text-transparent font-medium">All rights reserved JUNAID ABBASI</span>
+          </div>
+        </div>
       </div>
     </div>
   );
