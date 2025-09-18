@@ -1,19 +1,25 @@
-// Express server for Render: serves API and static frontend
-const express = require('express');
-const path = require('path');
+// server.js
+import express from "express";
+import path from "path";
+import { fileURLToPath } from "url";
+
+// Fix __dirname in ES modules
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// API routes (example)
-app.use('/api', require('./api'));
+// Example API
+import apiRoutes from "./api.js";
+app.use("/api", apiRoutes);
 
-// Serve static frontend
-app.use(express.static(path.join(__dirname, 'dist')));
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'dist', 'index.html'));
+// Serve frontend
+app.use(express.static(path.join(__dirname, "dist")));
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "dist", "index.html"));
 });
 
 app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+  console.log(`✅ Server running on port ${PORT}`);
 });
