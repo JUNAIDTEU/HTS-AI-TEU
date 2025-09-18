@@ -1,0 +1,19 @@
+# Render Blueprint for TEU-AI-HTS-BOT
+# Docs: https://render.com/docs/blueprint-spec
+
+services:
+  - type: web
+    name: teu-ai-hts-bot
+    env: node
+    plan: free
+    buildCommand: npm install && npm run build
+    startCommand: node server.js
+    envVars:
+      - key: NODE_VERSION
+        value: 20
+      - key: API_KEY
+        sync: false
+    autoDeploy: true
+    repo: <YOUR_GITHUB_REPO_URL>
+    branch: main
+    rootDir: .
