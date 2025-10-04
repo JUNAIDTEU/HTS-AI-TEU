@@ -1,4 +1,4 @@
-<<<<<<< Updated upstream
+
 // server.js
 import express from "express";
 import path from "path";
@@ -14,14 +14,14 @@ import { fileURLToPath } from 'url';
 import rateLimit from 'express-rate-limit';
 import initializeDatabase from './services/database.js';
 
->>>>>>> Stashed changes
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-<<<<<<< Updated upstream
+
 // Example API
 import apiRoutes from "./api.js";
 app.use("/api", apiRoutes);
@@ -60,7 +60,7 @@ const apiLimiter = rateLimit({
   max: 100 // limit each IP to 100 requests per windowMs
 });
 app.use('/api/', apiLimiter);
->>>>>>> Stashed changes
+
 
 // Serve frontend
 app.use(express.static(path.join(__dirname, "dist")));
@@ -68,7 +68,7 @@ app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "dist", "index.html"));
 });
 
-<<<<<<< Updated upstream
+
 app.listen(PORT, () => {
   console.log(`✅ Server running on port ${PORT}`);
 =======
