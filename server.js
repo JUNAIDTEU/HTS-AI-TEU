@@ -6,7 +6,7 @@ import fs from "fs";
 import { fileURLToPath } from "url";
 import rateLimit from "express-rate-limit";
 import initializeDatabase from "./services/database.js";
-import apiRoutes from "./api.js";
+import apiRoutes from "./api/index.js";
 import userPreferences from "./api/userPreferences.js";
 
 const __filename = fileURLToPath(import.meta.url);
