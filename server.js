@@ -5,7 +5,7 @@ import path from "path";
 import { fileURLToPath } from "url";
 
 // Fix __dirname in ES modules
-=======
+
 // Express server for Render: serves API, database, and static frontend
 import express from 'express';
 import path from 'path';
@@ -25,7 +25,7 @@ const PORT = process.env.PORT || 3000;
 // Example API
 import apiRoutes from "./api.js";
 app.use("/api", apiRoutes);
-=======
+
 // Serve static files from the dist directory after building
 app.use(express.static(path.join(__dirname, 'dist')));
 let db;
@@ -71,7 +71,7 @@ app.get("*", (req, res) => {
 
 app.listen(PORT, () => {
   console.log(`✅ Server running on port ${PORT}`);
-=======
+
 // Apply rate limiting
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
